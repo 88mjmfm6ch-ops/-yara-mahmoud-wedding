@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Yara & Mahmoud | Our Wedding</title>
+
+  <style>
+    :root {
+      --burgundy: #741f35;
+      --dark-burgundy: #4d1425;
+      --light-burgundy: #f8edef;
+      --white: #fffdfb;
+      --text: #321b23;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 80px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--burgundy);
+    }
+
+    h1 {
+      color: var(--burgundy);
+      font-size: clamp(48px, 13vw, 100px);
+      font-weight: normal;
+      margin: 20px 0;
+    }
+
+    h2 {
+      color: var(--burgundy);
+      font-size: clamp(35px, 8vw, 60px);
+      font-weight: normal;
+      margin: 15px 0 30px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.9;
+      margin: 12px auto;
+      max-width: 700px;
+    }
+
+    .line {
+      width: 70px;
+      height: 1px;
+      background: var(--burgundy);
+      margin: 28px auto;
+    }
+
+    .script {
+      font-size: 25px;
+      font-style: italic;
+      color: var(--burgundy);
+      line-height: 1.7;
+    }
+
+    /* HERO */
+
+    .hero {
+      background: linear-gradient(
+        180deg,
+        #ffffff,
+        #fff7f9
+      );
+    }
+
+    .date {
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      color: var(--dark-burgundy);
+    }
+
+    /* COUNTDOWN */
+
+    .countdown-section {
+      min-height: 70vh;
+      background: var(--burgundy);
+      color: white;
+    }
+
+    .countdown-section .eyebrow,
+    .countdown-section h2 {
+      color: white;
+    }
+
+    .countdown-section .line {
+      background: white;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .count-box {
+      min-width: 110px;
+      padding: 20px 15px;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .count-number {
+      display: block;
+      font-size: 42px;
+      font-weight: normal;
+    }
+
+    .count-label {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* STORY */
+
+    .story {
+      background: var(--white);
+    }
+
+    /* WEDDING DAY */
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .event {
+      background: white;
+      border: 1px solid #d9aab7;
+      padding: 22px 18px;
+      border-radius: 3px;
+    }
+
+    .time {
+      color: var(--burgundy);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .event-title {
+      font-size: 21px;
+      margin-top: 8px;
+    }
+
+    /* LOCATION */
+
+    .location {
+      background: var(--light-burgundy);
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 15px 30px;
+      background: var(--burgundy);
+      color: white;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      min-height: 70vh;
+      background: var(--dark-burgundy);
+      color: white;
+    }
+
+    .footer .eyebrow,
+    .footer h2,
+    .footer .script {
+      color: white;
+    }
+
+    .footer .line {
+      background: white;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      section {
+        padding: 70px 20px;
+      }
+
+      .count-box {
+        min-width: 85px;
+      }
+
+      .count-number {
+        font-size: 32px;
+      }
+
+      .count-label {
+        font-size: 9px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        Our Forever Begins
+      </div>
+
+      <h1>
+        Yara & Mahmoud
+      </h1>
+
+      <div class="line"></div>
+
+      <div class="date">
+        12 SEPTEMBER 2026
+      </div>
+
+      <p class="script">
+        Two hearts. One beautiful beginning.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- COUNTDOWN -->
+
+  <section class="countdown-section">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        Save The Date
+      </div>
+
+      <h2>
+        Counting Down To Forever
+      </h2>
+
+      <div class="line"></div>
+
+      <div id="countdown" class="countdown">
+
+        <div class="count-box">
+          <span id="days" class="count-number">00</span>
+          <span class="count-label">DAYS</span>
+        </div>
+
+        <div class="count-box">
+          <span id="hours" class="count-number">00</span>
+          <span class="count-label">HOURS</span>
+        </div>
+
+        <div class="count-box">
+          <span id="minutes" class="count-number">00</span>
+          <span class="count-label">MINUTES</span>
+        </div>
+
+        <div class="count-box">
+          <span id="seconds" class="count-number">00</span>
+          <span class="count-label">SECONDS</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- OUR STORY -->
+
+  <section class="story">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        Our Story
+      </div>
+
+      <h2>
+        From You & Me<br>
+        To Forever Us
+      </h2>
+
+      <div class="line"></div>
+
+      <p>
+        Our first love… and the most beautiful story
+        that began two years ago.
+      </p>
+
+      <p>
+        Two years of love, laughter, memories,
+        and countless beautiful moments.
+      </p>
+
+      <p>
+        And now, after all this time,
+        we’re ready to begin our forever.
+      </p>
+
+      <p>
+        From “you & me” to “forever us.”
+      </p>
+
+      <p class="script">
+        The best chapter of our story is about to begin…
+      </p>
+
+      <p>
+        <strong>Yara & Mahmoud</strong><br>
+        12.09.2026 👫🏻💍
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- WEDDING DAY -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="eyebrow">
+        The Celebration
+      </div>
+
+      <h2>
+        Our Wedding Day
+      </h2>
+
+      <p>
+        Join us as we celebrate the beginning
+        of our forever.
+      </p>
+
+      <div class="timeline">
+
+        <div class="event">
+          <div class="time">03:00 PM</div>
+          <div class="event-title">
+            Guests Arrival
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="time">03:30 PM</div>
+          <div class="event-title">
+            Bride & Groom Entrance + Zaffa
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="time">04:00 PM</div>
+          <div class="event-title">
+            First Dance
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="time">05:00 PM</div>
+          <div class="event-title">
+            Celebration
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="time">05:30 PM</div>
+          <div class="event-title">
+            Cake & Drinks
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="time">06:00 PM</div>
+          <div class="event-title">
+            Second Dance
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="time">07:00 PM</div>
+          <div class="event-title">
+            Let The Celebration Continue
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="time">08:00 PM</div>
+          <div class="event-title">
+            Until We Meet Again
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- LOCATION -->
+
+  <section class="location">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        The Venue
+      </div>
+
+      <h2>
+        Villa Beit Ward
+      </h2>
+
+      <p>
+        Al Mariouteya, Giza
+      </p>
+
+      <a
+        class="button"
+        href="https://www.google.com/maps/search/?api=1&query=Villa%20Beit%20Ward%20Al%20Mariouteya%20Giza"
+        target="_blank"
+      >
+        Get Directions
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL MESSAGE -->
+
+  <section class="footer">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        With Love
+      </div>
+
+      <h2>
+        We Can't Wait<br>
+        To Celebrate With You
+      </h2>
+
+      <div class="line"></div>
+
+      <p>
+        Thank you for being part of our story.
+      </p>
+
+      <p class="script">
+        Yara & Mahmoud ❤️
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- COUNTDOWN SCRIPT -->
+
+  <script>
+
+    const weddingDate =
+      new Date("September 12, 2026 15:00:00").getTime();
+
+    function updateCountdown() {
+
+      const now = new Date().getTime();
+
+      const distance = weddingDate - now;
+
+      if (distance <= 0) {
+
+        document.getElementById("countdown").innerHTML =
+          '<p class="script">Today, we begin our forever. ❤️</p>';
+
+        return;
+      }
+
+      const days =
+        Math.floor(distance / (1000 * 60 * 60 * 24));
+
+      const hours =
+        Math.floor(
+          (distance % (1000 * 60 * 60 * 24))
+          / (1000 * 60 * 60)
+        );
+
+      const minutes =
+        Math.floor(
+          (distance % (1000 * 60 * 60))
+          / (1000 * 60)
+        );
+
+      const seconds =
+        Math.floor(
+          (distance % (1000 * 60))
+          / 1000
+        );
+
+      document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+      document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+
+    setInterval(updateCountdown, 1000);
+
+  </script>
+
+</body>
+</html>
