@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Yara & Mahmoud | Our Wedding</title>
+  <title>Mahmoud & Yara | Our Wedding</title>
 
   <style>
     :root {
@@ -90,14 +89,8 @@
       line-height: 1.7;
     }
 
-    /* HERO */
-
     .hero {
-      background: linear-gradient(
-        180deg,
-        #ffffff,
-        #fff7f9
-      );
+      background: linear-gradient(180deg, #ffffff, #fff7f9);
     }
 
     .date {
@@ -107,8 +100,6 @@
       letter-spacing: 4px;
       color: var(--dark-burgundy);
     }
-
-    /* COUNTDOWN */
 
     .countdown-section {
       min-height: 70vh;
@@ -153,13 +144,9 @@
       display: block;
     }
 
-    /* STORY */
-
     .story {
       background: var(--white);
     }
-
-    /* WEDDING DAY */
 
     .timeline {
       display: grid;
@@ -187,8 +174,6 @@
       margin-top: 8px;
     }
 
-    /* LOCATION */
-
     .location {
       background: var(--light-burgundy);
     }
@@ -207,7 +192,65 @@
       text-transform: uppercase;
     }
 
-    /* FOOTER */
+    /* RSVP */
+
+    .rsvp {
+      background: var(--white);
+    }
+
+    .rsvp-options {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+
+    .rsvp-option {
+      display: block;
+      padding: 16px 25px;
+      border: 1px solid #d9aab7;
+      color: var(--burgundy);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      background: white;
+    }
+
+    .rsvp-option input {
+      margin-right: 8px;
+      accent-color: var(--burgundy);
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 650px;
+      min-height: 140px;
+      padding: 18px;
+      border: 1px solid #d9aab7;
+      resize: vertical;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 16px;
+      color: var(--text);
+      background: white;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: var(--burgundy);
+    }
+
+    .rsvp-button {
+      border: none;
+      cursor: pointer;
+    }
+
+    #rsvpMessage {
+      display: none;
+      margin-top: 25px;
+      color: var(--burgundy);
+      font-style: italic;
+    }
 
     .footer {
       min-height: 70vh;
@@ -224,8 +267,6 @@
     .footer .line {
       background: white;
     }
-
-    /* MOBILE */
 
     @media (max-width: 600px) {
 
@@ -266,7 +307,7 @@
       </div>
 
       <h1>
-        Yara & Mahmoud
+        Mahmoud & Yara
       </h1>
 
       <div class="line"></div>
@@ -370,7 +411,7 @@
       </p>
 
       <p>
-        <strong>Yara & Mahmoud</strong><br>
+        <strong>Mahmoud & Yara</strong><br>
         12.09.2026 👫🏻💍
       </p>
 
@@ -483,11 +524,74 @@
 
       <a
         class="button"
-        href="https://www.google.com/maps/search/?api=1&query=Villa%20Beit%20Ward%20Al%20Mariouteya%20Giza"
+        href="https://www.google.com/maps/place/29%C2%B057'26.4%22N+31%C2%B010'39.9%22E/@29.957333,31.177757,17z/data=!4m4!3m3!8m2!3d29.9573333!4d31.17775"
         target="_blank"
       >
         Get Directions
       </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- RSVP -->
+
+  <section class="rsvp">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        RSVP
+      </div>
+
+      <h2>
+        Will You Celebrate With Us?
+      </h2>
+
+      <div class="line"></div>
+
+      <p>
+        Your presence means the world to us.
+        Please let us know if you'll be joining us
+        on our special day.
+      </p>
+
+      <div class="rsvp-options">
+
+        <label class="rsvp-option">
+          <input type="radio" name="attendance" value="yes">
+          Yes, I'll be there
+        </label>
+
+        <label class="rsvp-option">
+          <input type="radio" name="attendance" value="no">
+          Sorry, I can't make it
+        </label>
+
+      </div>
+
+      <p class="script">
+        A Little Note for the Couple 💌
+      </p>
+
+      <textarea
+        id="message"
+        placeholder="Write a sweet message for Mahmoud & Yara..."
+      ></textarea>
+
+      <br>
+
+      <button
+        class="button rsvp-button"
+        onclick="sendRSVP()"
+      >
+        Send RSVP ❤️
+      </button>
+
+      <p id="rsvpMessage">
+        Thank you for celebrating our love with us. ❤️
+      </p>
 
     </div>
 
@@ -516,7 +620,7 @@
       </p>
 
       <p class="script">
-        Yara & Mahmoud ❤️
+        Mahmoud & Yara ❤️
       </p>
 
     </div>
@@ -582,6 +686,37 @@
     updateCountdown();
 
     setInterval(updateCountdown, 1000);
+
+
+    function sendRSVP() {
+
+      const attendance =
+        document.querySelector(
+          'input[name="attendance"]:checked'
+        );
+
+      const message =
+        document.getElementById("message").value.trim();
+
+      if (!attendance) {
+
+        alert("Please choose if you will be joining us ❤️");
+
+        return;
+      }
+
+      document.getElementById("rsvpMessage").style.display =
+        "block";
+
+      document.getElementById("message").value = "";
+
+      document.querySelectorAll(
+        'input[name="attendance"]'
+      ).forEach(function(input) {
+        input.checked = false;
+      });
+
+    }
 
   </script>
 
